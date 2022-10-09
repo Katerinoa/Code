@@ -1,33 +1,23 @@
-#include <stdio.h>
+#include <bits/stdc++.h>
+using namespace std;
+
 int main()
 {
-    int zheng = 0, fu = 0, ling = 0, n = 0, shu = 0, i;
-    while (1)
-    {
-        scanf("%d", &n);
-        if (!n)
+    vector<vector<int>> obstacleGrid = {{1,2,3}, {4,5,6}};
+    int m = obstacleGrid.size();
+    int n = obstacleGrid[0].size();
+    int dp[m + 1][n + 1];
+    memset(dp, 0, sizeof(dp));
+    dp[0][0] = obstacleGrid[0][0];
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
         {
-            return 0;
+            if (i > 0 && j > 0)
+                dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + obstacleGrid[i][j];
+            else if (i > 0)
+                dp[i][j] = dp[i - 1][j] + obstacleGrid[i][j];
+            else if (j > 0)
+                dp[i][j] += dp[i][j - 1] + obstacleGrid[i][j];
         }
-        for (i = 0; i < n; i++)
-        {
-            scanf("%d", &shu);
-            if (shu > 0)
-            {
-                zheng++;
-            }
-            else if (shu == 0)
-            {
-                ling++;
-            }
-            else
-            {
-                fu++;
-            }
-        }
-        printf("%d %d %d\n", zheng, ling, fu);
-        zheng = 0;
-        fu = 0;
-        ling = 0;
-    }
+    cout << dp[m - 1][n - 1] << endl;
 }
