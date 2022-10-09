@@ -1,43 +1,37 @@
 #include <stdio.h>
-#include<string.h>
 
-int main(void)
+void bubble_sort(char* arr, int sz)
 {
-	int N, o;
-	int temp;
-    scanf("%d", &N);
-    // getchar();//Œ¸ ’ªÿ≥µ
-    char ch[4];
-	for(int x = 0; x < N; ++x)
+	int i = 0;
+	for (i = 0; i < sz-1; i++)
 	{
-        memset(ch, 0, sizeof(ch));
-        scanf("%s", ch);
-
-		if(ch[0] > ch[1])
-		{	
-			temp = ch[1];
-			ch[2] = ch[3];
-			ch[2] = temp;
-		}
-		if(ch[1] > ch[2])
-		{
-			temp = ch[2];
-			ch[2] = ch[3];
-			ch[3] = temp;
-			
-		}
-		if(ch[0] > ch[2])
-		{
-			temp = ch[1];
-			ch[1] = ch[3];
-			ch[3] = temp;
-			
-		}
-		printf("%c %c %c", ch[1], ch[2], ch[3]);
+		int j = 0;
 		
+		for (j = 0; j < sz-i-1; j++)
+			
+		{
+			if (arr[j]>arr[j + 1])
+			{
+				int tmp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
+			}
+		}
+	}	
+}
+
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	char arr[3];
+	for(int i = 0; i < n; i++)
+	{
+		scanf("%s", arr);
+		bubble_sort(&arr[0], 3);
+		printf("%c %c %c", arr[0], arr[1], arr[2]);
 		printf("\n");
 	}
-	
-	
-	return  0;
+
+	return 0;
 }
