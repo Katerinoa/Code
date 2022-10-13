@@ -1,37 +1,25 @@
-#include <stdio.h>
+#include<stdio.h>
 
-void bubble_sort(char* arr, int sz)
+int main(void)
 {
-	int i = 0;
-	for (i = 0; i < sz-1; i++)
+	int a, b, c;
+	int m, n;
+	int index;
+	int res[20] = {0};
+	while(scanf("%d %d", &m, &n) != EOF)
 	{
-		int j = 0;
-		
-		for (j = 0; j < sz-i-1; j++)
-			
+		index = 0;
+		for(int i = m; i <= n; ++i)
 		{
-			if (arr[j]>arr[j + 1])
-			{
-				int tmp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = tmp;
-			}
+			a = i % 10, b = (i / 10) % 10, c = i / 100;
+			if(i == a*a*a + b*b*b + c*c*c)
+				res[++index] = i;
 		}
-	}	
-}
-
-int main()
-{
-	int n;
-	scanf("%d", &n);
-	char arr[3];
-	for(int i = 0; i < n; i++)
-	{
-		scanf("%s", arr);
-		bubble_sort(&arr[0], 3);
-		printf("%c %c %c", arr[0], arr[1], arr[2]);
-		printf("\n");
+		if(!index)
+			printf("no\n");
+		else
+			for(int i = 1; i <= index ;i++)
+				printf("%d%c", res[i], " \n"[i == index]);
 	}
-
 	return 0;
 }
