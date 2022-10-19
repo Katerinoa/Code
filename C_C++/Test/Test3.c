@@ -1,25 +1,38 @@
-#include<stdio.h>
-
-int main(void)
+#include <stdio.h>
+double getGPA(int grade)
 {
-	int a, b, c;
-	int m, n;
-	int index;
-	int res[20] = {0};
-	while(scanf("%d %d", &m, &n) != EOF)
+	if(grade>=90)
+		return 4.0;
+	else if(grade>=85)
+		return 3.7;
+	else if(grade>= 81)
+		return 3.3;
+	else if(grade >= 78)
+		return 3.0;
+	else if(grade >= 75)
+		return 2.7;
+	else if(grade >= 72)
+		return 2.3;
+	else if(grade >= 68)
+		return 2.0;
+	else if(grade >= 64)
+		return 1.7;
+	else if(grade >= 60)
+		return 1.0;
+	else
+		return 0;
+}
+int main()
+{
+	double grade, credit, creditSum = 0, GPASum = 0;
+	int N;
+	scanf("%d", &N);
+	while(N--)
 	{
-		index = 0;
-		for(int i = m; i <= n; ++i)
-		{
-			a = i % 10, b = (i / 10) % 10, c = i / 100;
-			if(i == a*a*a + b*b*b + c*c*c)
-				res[++index] = i;
-		}
-		if(!index)
-			printf("no\n");
-		else
-			for(int i = 1; i <= index ;i++)
-				printf("%d%c", res[i], " \n"[i == index]);
+		scanf("%lf%lf", &grade, &credit);
+		creditSum += credit;
+		GPASum += getGPA(grade)*credit;
 	}
+	printf("%.4lf", GPASum / creditSum);
 	return 0;
 }

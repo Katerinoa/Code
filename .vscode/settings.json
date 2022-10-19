@@ -58,7 +58,10 @@
     "xtree": "cpp",
     "xutility": "cpp",
     "stdlib.h": "c",
-    "string.h": "c"
+    "string.h": "c",
+    "chrono": "cpp",
+    "complex": "cpp",
+    "numbers": "cpp"
   },
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "aiXcoder.showTrayIcon": true

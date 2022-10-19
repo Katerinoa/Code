@@ -4,7 +4,7 @@ data SEGMENT
 	string DB 'hello world!',0ah,0dh,'$'
 data ENDS
 stack SEGMENT STACK
-	DW 512 DUP(?)
+	DW 512 DUP(1,2)
 stack ENDS
 
 code SEGMENT
