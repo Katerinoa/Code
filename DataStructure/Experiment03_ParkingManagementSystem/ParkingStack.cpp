@@ -76,7 +76,7 @@ int ParkingStack::getCarIndex(char *targetLicense)
     Cars **p = base;
     while (p < top)
     {
-        if (strcmp((*p)->getLicense(), targetLicense))
+        if (strcmp((*p)->getLicense(), targetLicense) == 0)
             return p - base;
         p++;
     }

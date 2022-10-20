@@ -1,7 +1,11 @@
 #pragma once
 #include <bits/stdc++.h>
 using namespace std;
-
+struct Time
+{
+    int hour;
+    int min;
+};
 class Cars
 {
 public:
