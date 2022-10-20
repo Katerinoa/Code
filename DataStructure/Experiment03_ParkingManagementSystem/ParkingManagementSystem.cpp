@@ -4,14 +4,20 @@
 #include "ShortCut.h"
 using namespace std;
 
+//输出停车场内车辆列表
+void ShowCarsInParking(ParkingStack &Parking)
+{
+    Parking.printStack();
+}
+
 //车辆驶入停车场
 void EnterParking(ParkingStack &Parking, ParkingStack &TemParking, ShortCut &Cut)
 {
     //初始化新来车辆
-    cout << "登记车牌号 及 车辆到达时间: " << endl;
+    cout << "登记车牌号 及 车辆到达时间(时 分): " << endl;
     char *license = new char[20];
-    int comeTime;
-    cin >> license >> comeTime;
+    Time comeTime;
+    cin >> license >> comeTime.hour >> comeTime.min;
     Cars *newCar = new Cars();
     newCar->initCars(license, comeTime); //默认位置 0:便道,默认状态 1:正在进入停车场
     //如果停车场未满
@@ -35,8 +41,8 @@ void LeaveParking(ParkingStack &Parking, ParkingStack &TemParking, ShortCut &Cut
 {
     cout << "驶出停车场车辆的车牌号 及 离开的时间:" << endl;
     char *license = new char[20];
-    int leaveTime;
-    cin >> license >> leaveTime;
+    Time leaveTime;
+    cin >> license >> leaveTime.hour >> leaveTime.min;
     int index = Parking.getCarIndex(license);
     Cars *car_p;
     if (index >= 0)                    //停车场中有该牌号车辆
@@ -47,8 +53,8 @@ void LeaveParking(ParkingStack &Parking, ParkingStack &TemParking, ShortCut &Cut
     if (!Parking.StackEmpty())
     {
         Cars *temp = NULL;
-        int parkTime = leaveTime - car_p->getEnterTime();
-        cout << "该车停留的时间为: " << parkTime << " 小时,应缴费用为: " << parkTime * 1.5 << "元" << endl;
+        Time parkTime = car_p->getParkTime(leaveTime);
+        cout << "该车停留的时间为: " << parkTime.hour << "小时" << parkTime.min << "分钟,应缴费用为: " << (parkTime.hour + 1) * 1.5 << "元" << endl;
         //将前面的车辆移入临时便道
         while (*(Parking.getTopPointer() - 1) != car_p)
         {
@@ -68,7 +74,7 @@ void LeaveParking(ParkingStack &Parking, ParkingStack &TemParking, ShortCut &Cut
             Parking.EnterParking(temp);
             temp->setEnterTime(leaveTime);
             cout << "在便道上第1的位置上,车牌号为: " << temp->getLicense() << " 的车驶入停车场" << endl
-                 << "驶入时间为: " << temp->getEnterTime() << endl;
+                 << "驶入时间为: " << temp->getEnterTime().hour << ':' << temp->getEnterTime().min << endl;
         }
     }
 }
@@ -86,13 +92,16 @@ void manageSystem(ParkingStack &Parking, ParkingStack &TemParking, ShortCut &Cut
         case 'D':
             LeaveParking(Parking, TemParking, Cut);
             break;
+        case 'S':
+            ShowCarsInParking(Parking);
+            break;
         default:
             cout << "请输入正确的操作标识! " << endl;
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); //丢弃输入缓冲区中的内容
             break;
         }
         cout << endl;
-        cout << "有车辆进入停车场(A);有车辆出停车场(D);程序停止(#):" << endl;
+        cout << "有车辆进入停车场(A);有车辆出停车场(D);输出停车场内车辆(S);程序停止(#):" << endl;
     }
 }
 int main()

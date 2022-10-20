@@ -5,12 +5,12 @@ Cars::Cars()
     license = new char[20];
 }
 //初始化车辆
-void Cars::initCars(char *license, int comeTime)
+void Cars::initCars(char *license, Time comeTime)
 {
     strcpy(this->license, license);
     comeTime = comeTime;
-    position = 0;   //默认在便道等候
-    enterTime = -1; //表示未进入停车场，不能出停车场
+    position = 0;         //默认在便道等候
+    enterTime = {-1, -1}; //表示未进入停车场，不能出停车场
 }
 //设置车辆位置,输入1表示在停车场,输入0表示在便道
 void Cars::setPosition(int position)
@@ -18,7 +18,7 @@ void Cars::setPosition(int position)
     this->position = position;
 }
 //设置车辆进入停车场的时间
-void Cars::setEnterTime(int enterTime)
+void Cars::setEnterTime(Time enterTime)
 {
     this->enterTime = enterTime;
 }
@@ -26,9 +26,9 @@ void Cars::setEnterTime(int enterTime)
 void Cars::printCars()
 {
     cout << "车牌号: " << license << endl
-         << "到达时间:  " << comeTime << endl;
+         << "到达时间:  " << comeTime.hour << ':' << comeTime.min << endl;
     if (position == 1)
-        cout << "进入停车场时间:  " << enterTime << endl;
+        cout << "进入停车场时间:  " << enterTime.hour << ':' << enterTime.min << endl;
 }
 //获得车牌号
 char *Cars::getLicense()
@@ -36,7 +36,16 @@ char *Cars::getLicense()
     return license;
 }
 //获得进停车场时间
-int Cars::getEnterTime()
+Time Cars::getEnterTime()
 {
     return enterTime;
+}
+//获得停车时间
+Time Cars::getParkTime(Time leaveTime)
+{
+    int minutes = (leaveTime.hour * 60 + leaveTime.min) - (enterTime.hour * 60 + enterTime.min);
+    if (minutes < 0)
+        minutes += 60 * 24;
+    Time parkTime = {minutes / 60, minutes % 60};
+    return parkTime;
 }
