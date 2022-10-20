@@ -16,8 +16,11 @@ public:
     ~ShortCut();
     bool QueneEmpty();
     void EnterCut(Cars* car);
-    Cars* LeaveCut();
+    void printQuene();
     int countCars();
+    int getCarIndex(char *targetLicense);
+    Cars *LeaveCut();
+    Cars *getCar(char *targetLicense);
 
 private:
     QNode *front;

@@ -67,12 +67,19 @@ void ParkingStack::queryCars(char *targetLicense)
 void ParkingStack::printStack()
 {
     Cars **p = base;
-    while (p <= top)
+    while (p < top)
+    {
+        cout << (p - base) + 1 << "号位:" << endl;
         (*p)->printCars();
+        cout << "入场时间: " << (*p)->getEnterTime().hour << ':' << (*p)->getEnterTime().min << endl;
+        p++;
+    }
 }
 //获得车辆位置
 int ParkingStack::getCarIndex(char *targetLicense)
 {
+    if (StackEmpty())
+        return -1;
     Cars **p = base;
     while (p < top)
     {
@@ -80,13 +87,21 @@ int ParkingStack::getCarIndex(char *targetLicense)
             return p - base;
         p++;
     }
-    cout << "未查询到该车辆信息！" << endl;
     return -1;
 }
 //获得序号车辆
-Cars *ParkingStack::getCar(int index)
+Cars *ParkingStack::getCar(char *targetLicense)
 {
-    return *(base + index);
+    if (StackEmpty())
+        return NULL;
+    Cars **p = base;
+    while (p < top)
+    {
+        if (strcmp((*p)->getLicense(), targetLicense) == 0)
+            return *p;
+        p++;
+    }
+    return NULL;
 }
 //获得栈顶指针
 Cars **ParkingStack::getTopPointer()

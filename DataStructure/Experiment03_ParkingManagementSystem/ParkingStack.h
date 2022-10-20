@@ -17,7 +17,7 @@ public:
     void clearStack();
     void EnterParking(Cars *car);
     Cars *LeaveParking();
-    Cars *getCar(int index);
+    Cars *getCar(char *targetLicense);
     Cars **getTopPointer();
 
 private:

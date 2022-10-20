@@ -15,6 +15,7 @@ public:
     void setEnterTime(Time EnterTime);
     void printCars();
     char* getLicense();
+    int getPosition();
     Time getEnterTime();
     Time getParkTime(Time leaveTime);
 
