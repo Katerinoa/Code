@@ -1,31 +1,27 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-int removeDuplicates(vector<int> &nums)
-{
-	int p = 0, currentNum = 0xc0c0c0c0, times = 0;
-	for (int i = 0; i < nums.size(); ++i)
-	{
-		if (nums[i] > currentNum)
-		{
-			currentNum = nums[i];
-			times = 1;
-		}
-		else if (nums[i] == currentNum && times >= 2)
-			continue;
-		else if (nums[i] == currentNum)
-			times++;
-
-		nums[p++] = currentNum;
-	}
-	return p;
-}
 int main()
 {
-	vector<int> nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 3, 4};
-	cout << removeDuplicates(nums) << endl;
-	for (vector<int>::iterator i = nums.begin(); i != nums.end(); i++)
-		cout << *i;
+	int n, num, c, select;
+	n = 0;
+	num = 0;
+	cin >> n;
+	cin >> select; //这时题目中的x
+	for (int i = 0; i < n; i++)
+	{
+		int b = i + 1;
+		do
+		{
+			c = b % 10;
+			b /= 10;
+			if (c == select)
+			{
+				num++;
+			}
+		} while (b != 0);
+	}
+	cout << num << endl;
 
 	return 0;
 }
