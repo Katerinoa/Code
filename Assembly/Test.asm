@@ -3,6 +3,9 @@ data SEGMENT
     up DB 0
     equa DB 0
     down DB 0
+    UPSTRING  DB        0AH,0DH,'UP Number:$'
+    DOWNSTRING  DB        0AH,0DH,'Down Number:$'
+    EQUASTRING  DB        0AH,0DH,'Eqau Number:$'
 data ENDS
 
 code SEGMENT
@@ -35,6 +38,34 @@ down_inc:
 nextNum:
     INC SI
     LOOP S
+
+    mov dx,data
+    mov ds,dx
+
+    add up, 30H
+    add equa, 30H
+    add down, 30H
+
+    mov dx, offset UPSTRING
+    mov ah, 09H
+    int 21H
+    mov dl,up
+    mov ah,02H
+    int 21H
+
+    mov dx, offset EQUASTRING
+    mov ah, 09H
+    int 21H
+    mov dl,equa
+    mov ah,02H
+    int 21H
+        
+    mov dx, offset DOWNSTRING
+    mov ah, 09H
+    int 21H
+    mov dl,down
+    mov ah,02H
+    int 21H
 
     MOV AX ,4C00H
     INT 21H

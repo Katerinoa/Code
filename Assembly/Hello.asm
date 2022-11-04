@@ -10,6 +10,7 @@ stack ENDS
 code SEGMENT
 	ASSUME CS:code,DS:data,SS:stack
 start:
+count DW 
 	MOV AX,DATA
 	MOV DS,AX
 

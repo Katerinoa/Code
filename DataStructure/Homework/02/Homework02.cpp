@@ -118,7 +118,7 @@ void deleteBetweenValues(LinkedList L, ElemType v1, ElemType v2)
     while (p)
     {
         //标记两个边界节点
-        if (p->data <= v1 && p1->next->data >= v1 && !p1)
+        if (p->data <= v1 && p->next->data >= v1 && !p1)
             p1 = p;
         else if (p->data <= v2 && p->next->data >= v2 && p2)
             p2 = p;

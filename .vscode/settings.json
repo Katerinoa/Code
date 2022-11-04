@@ -61,8 +61,26 @@
     "string.h": "c",
     "chrono": "cpp",
     "complex": "cpp",
-    "numbers": "cpp"
+    "numbers": "cpp",
+    "barrier": "cpp",
+    "bitset": "cpp",
+    "forward_list": "cpp",
+    "functional": "cpp",
+    "ranges": "cpp",
+    "variant": "cpp",
+    "charconv": "cpp",
+    "list": "cpp",
+    "unordered_set": "cpp",
+    "optional": "cpp",
+    "future": "cpp",
+    "iomanip": "cpp",
+    "mutex": "cpp",
+    "regex": "cpp",
+    "array": "cpp",
+    "string_view": "cpp",
+    "span": "cpp"
   },
   "editor.suggest.snippetsPreventQuickSuggestions": false,
-  "aiXcoder.showTrayIcon": true
+  "aiXcoder.showTrayIcon": true,
+  "cSpell.words": ["Katerina"]
 }
