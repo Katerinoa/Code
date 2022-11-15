@@ -49,10 +49,12 @@ bool judge(string T, string str)
 
 void fileOperate()
 {
+    //打开文件
     ifstream infile;
     ofstream outfile;
     infile.open(inPath, ios::in);
     outfile.open(outPath, ios::out);
+    //判断文件状态
     if (!infile.is_open())
     {
         cout << "读入文件打开失败!" << endl;
@@ -72,10 +74,11 @@ void fileOperate()
         infile >> S >> T; //从文件中顺序读取字符串
         outfile << left << setw(10) << S << setw(20) << T;
         if (judge(S, T))
-            outfile << left << setw(30) << "YES" << endl;
+            outfile << left << setw(30) << "YES" << endl; //对齐输出
         else
             outfile << left << setw(30) << "NO" << endl;
     }
+    //关闭文件
     infile.close();
     outfile.close();
     cout << "File Operate Done!" << endl;
